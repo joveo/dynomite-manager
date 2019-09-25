@@ -68,7 +68,7 @@ public class FloridaServer {
 
     @Inject
     public FloridaServer(FloridaConfig floridaConfig, CommonConfig commonConfig, TaskScheduler scheduler,
-            InstanceIdentity id, Sleeper sleeper, DynomiteYamlTask tuneTask, InstanceState state,
+             Sleeper sleeper, DynomiteYamlTask tuneTask, InstanceState state,
             IDynomiteProcess dynProcess, StorageProcessManager storageProcess, StorageProxy storageProxy) {
         this.floridaConfig = floridaConfig;
         this.commonConfig = commonConfig;
