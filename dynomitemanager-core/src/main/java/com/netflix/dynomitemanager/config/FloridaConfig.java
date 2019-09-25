@@ -187,7 +187,7 @@ public interface FloridaConfig {
      *
      * @return true if the Dynomite cluster is running across multiple DCs
      */
-    @DefaultValue("true")
+    @DefaultValue("false") //CHABHI - Moved to false
     @PropertyName(name = "dyno.multiregion")
     public boolean isDynomiteMultiDC();
 

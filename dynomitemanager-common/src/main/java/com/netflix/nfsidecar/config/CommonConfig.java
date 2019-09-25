@@ -79,11 +79,11 @@ public interface CommonConfig {
     @PropertyName(name = "dyno.secure.storage.port")
     public int getDynomiteSecureStoragePort();
 
-    @DefaultValue("false")
+    @DefaultValue("true")
     @PropertyName(name = "dyno.backup.snapshot.enabled")
     public boolean isBackupEnabled();
 
-    @DefaultValue("false")
+    @DefaultValue("true")
     @PropertyName(name = "dyno.backup.restore.enabled")
     public boolean isRestoreEnabled();
 

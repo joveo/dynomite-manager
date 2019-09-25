@@ -68,8 +68,7 @@ public class S3Restore implements Restore {
 
             try {
                 /* construct the key for the backup data */
-                String keyName = commonConfig.getBackupLocation() + "/" + iid.getInstance().getDatacenter() + "/"
-                        + iid.getInstance().getRack() + "/" + iid.getInstance().getToken() + "/" + time;
+                String keyName = commonConfig.getBackupLocation();
 
                 logger.info("S3 Bucket Name: " + commonConfig.getBucketName());
                 logger.info("Key in Bucket: " + keyName);

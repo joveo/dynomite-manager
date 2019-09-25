@@ -54,7 +54,7 @@ public class FloridaServer {
     private final TaskScheduler scheduler;
     private final FloridaConfig floridaConfig;
     private final CommonConfig commonConfig;
-    private final InstanceIdentity id;
+    /*private final InstanceIdentity id;*/
     private final Sleeper sleeper;
     private final DynomiteYamlTask tuneTask;
     private final IDynomiteProcess dynProcess;
@@ -73,7 +73,7 @@ public class FloridaServer {
         this.floridaConfig = floridaConfig;
         this.commonConfig = commonConfig;
         this.scheduler = scheduler;
-        this.id = id;
+        /*this.id = id;*/
         this.sleeper = sleeper;
         this.tuneTask = tuneTask;
         this.state = state;
@@ -115,10 +115,10 @@ public class FloridaServer {
     }
 
     public void initialize() throws Exception {
-        if (id.getInstance().isOutOfService()) {
+        /*if (id.getInstance().isOutOfService()) {
             logger.error("Out of service");
             return;
-        }
+        }*/
 
         logger.info("Initializing Florida Server now ...");
 
@@ -132,7 +132,7 @@ public class FloridaServer {
              * sleep for some random between 100 - 200 sec if this is a new node
              * with new IP for SG to be updated by other seed nodes
              */
-            if (id.isReplace() || id.isTokenPregenerated()) {
+            /*if (id.isReplace() || id.isTokenPregenerated()) {
                 long initTime = 100 + (int) (Math.random() * ((200 - 100) + 1));
 
                 logger.info("Sleeping " + initTime + " seconds -> a node is replaced or token is pregenerated.");
@@ -143,7 +143,7 @@ public class FloridaServer {
             }
 
             scheduler.addTask(UpdateSecuritySettings.JOBNAME, UpdateSecuritySettings.class,
-                    UpdateSecuritySettings.getTimer(id));
+                    UpdateSecuritySettings.getTimer(id));*/
         }
 
         // Invoking the task directly as any errors in this task
@@ -161,7 +161,8 @@ public class FloridaServer {
             logger.info("Restore is enabled.");
             scheduler.runTaskNow(RestoreTask.class); // restore from the AWS
             logger.info("Scheduled task " + RestoreTask.TaskName);
-        } else { // no restores needed
+        }
+        else { // no restores needed
             logger.info("Restore is disabled.");
 
             /**
@@ -170,7 +171,7 @@ public class FloridaServer {
              * termination) 3. An existing token exists and Storage is not alive
              * (node reboot)
              */
-            boolean warmUp = false;
+/*            boolean warmUp = false;
             if (floridaConfig.isForceWarm()) {
                 logger.info("force bootstrap -> warm up");
                 warmUp = true;
@@ -194,7 +195,7 @@ public class FloridaServer {
                 dynProcess.start();
                 sleeper.sleepQuietly(1000); // 1s
                 scheduler.runTaskNow(ProxyAndStorageResetTask.class);
-            }
+            }*/
         }
 
         // Backup
@@ -208,7 +209,7 @@ public class FloridaServer {
 
         // Routine monitoring and restarting dynomite or storage processes as
         // needed.
-        scheduler.addTask(ProcessMonitorTask.JOBNAME, ProcessMonitorTask.class, ProcessMonitorTask.getTimer());
+       /* scheduler.addTask(ProcessMonitorTask.JOBNAME, ProcessMonitorTask.class, ProcessMonitorTask.getTimer());
         scheduler.addTask(DynomiteProcessManager.JOB_TASK_NAME, DynomiteProcessManager.class,
                 DynomiteProcessManager.getTimer());
 
@@ -216,15 +217,15 @@ public class FloridaServer {
 
         // Routing changing the YML file so that a manual Dynomite restart gets
         // the proper tokens
-        scheduler.addTask(DynomiteYamlTask.JOBNAME, DynomiteYamlTask.class, DynomiteYamlTask.getTimer());
+        scheduler.addTask(DynomiteYamlTask.JOBNAME, DynomiteYamlTask.class, DynomiteYamlTask.getTimer());*/
 
         logger.info("Starting task scheduler");
         scheduler.start();
     }
 
-    public InstanceIdentity getId() {
+   /* public InstanceIdentity getId() {
         return id;
-    }
+    }*/
 
     public TaskScheduler getScheduler() {
         return scheduler;

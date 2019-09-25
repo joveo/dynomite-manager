@@ -69,8 +69,7 @@ public class S3Backup implements Backup {
         /*
          * Key name is comprised of the backupDir + DC + Rack + token + Date
          */
-        String keyName = awsCommonConfig.getBackupLocation() + "/" + iid.getInstance().getDatacenter() + "/"
-                + iid.getInstance().getRack() + "/" + iid.getInstance().getToken() + "/" + todayStart.getMillis();
+        String keyName = awsCommonConfig.getBackupLocation() + "/" + todayStart.getMillis();
 
         // Get bucket location.
         logger.info("Key in Bucket: " + keyName);

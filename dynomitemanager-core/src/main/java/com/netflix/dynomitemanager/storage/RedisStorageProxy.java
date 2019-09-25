@@ -45,7 +45,7 @@ public class RedisStorageProxy extends Task implements StorageProxy, HealthIndic
     private static final String DYNO_REDIS = "redis";
     private static final String DYNO_REDIS_CONF_PATH = "/apps/nfredis/conf/redis.conf";
     private static final String REDIS_ADDRESS = "127.0.0.1";
-    private static final int REDIS_PORT = 22122;
+    private static final int REDIS_PORT = 16379;
     private static final long GB_2_IN_KB = 2L * 1024L * 1024L;
     private static final String PROC_MEMINFO_PATH = "/proc/meminfo";
     private static final Pattern MEMINFO_PATTERN = Pattern.compile("MemTotal:\\s*([0-9]*)");
